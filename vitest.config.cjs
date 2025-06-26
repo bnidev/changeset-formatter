@@ -1,9 +1,7 @@
-/// <reference types="vitest" />
+const path = require('node:path')
+const { defineConfig } = require('vitest/config')
 
-import path from 'node:path'
-import { defineConfig } from 'vitest/config'
-
-export default defineConfig({
+module.exports = defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
