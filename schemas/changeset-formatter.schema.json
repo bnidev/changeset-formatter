@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "description": "The configuration that is contained inside the changesetformatterrc.json",
+  "type": "object",
+  "properties": {
+    "useEmojis": { "type": "boolean" },
+    "linePrefix": { "type": "string" },
+    "showCommitHash": { "type": "boolean" },
+    "commitHashPosition": {
+      "type": "string",
+      "enum": ["start", "end"]
+    },
+    "capitalizeMessage": { "type": "boolean" },
+    "categorize": { "type": "boolean" },
+    "removeTypes": { "type": "boolean" },
+    "addReleaseDate": { "type": "boolean" },
+    "pathToChangelog": { "type": "string" },
+    "categories": {
+      "type": "object",
+      "description": "A mapping of category names to their configuration.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "emoji": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["title"],
+        "additionalProperties": false
+      }
+    }
+  }
+}
