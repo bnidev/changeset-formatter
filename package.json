@@ -1,0 +1,57 @@
+{
+  "name": "changeset-formatter",
+  "version": "0.0.1",
+  "description": "Custom formatter and CLI for Changesets",
+  "bin": {
+    "changeset-formatter": "dist/cli/index.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "git config --local core.hooksPath .githooks || echo 'not in git'",
+    "build": "tsup",
+    "dev": "tsup src/index.ts src/cli/index.ts --format esm,cjs --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest run --coverage",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "changesets",
+    "cli",
+    "formatter",
+    "changelog"
+  ],
+  "author": "Benjamin Diener",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnidev/changeset-formatter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bnidev/changeset-formatter/issues"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "peerDependencies": {
+    "@changesets/cli": "^2.29.5"
+  },
+  "dependencies": {
+    "cosmiconfig": "^9.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.4",
+    "@changesets/types": "^6.1.0",
+    "@types/node": "^24.0.3",
+    "@vitest/coverage-v8": "3.2.4",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
