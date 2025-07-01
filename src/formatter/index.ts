@@ -76,6 +76,10 @@ function categorizeSummary(
   if (config.categorize === false) {
     return lines
       .map((line) => {
+        if (line.length > 1000) {
+          throw new Error('Line too long to safely parse')
+        }
+
         const match = line.match(/^(\w+)(?:\([^)]+\))?:\s*(.+)$/)
         let message: string
 
@@ -104,6 +108,10 @@ function categorizeSummary(
   const categories: Record<string, string[]> = {}
 
   for (const line of lines) {
+    if (line.length > 1000) {
+      throw new Error('Line too long to safely parse')
+    }
+
     const match = line.match(/^(\w+)(?:\([^)]+\))?:\s*(.+)$/)
     const { type, message } = match
       ? { type: match[1].toLowerCase(), message: match[2] }
