@@ -94,4 +94,18 @@ describe('formatter/index', () => {
     expect(result).toContain('### Bug Fixes')
     expect(result).toContain('### Other Changes')
   })
+
+  it('throws an error if a summary line exceeds 1000 characters', async () => {
+    const longLine = `fix: ' + ${'a'.repeat(1001)}`
+    const changeset: NewChangesetWithCommit = {
+      summary: longLine,
+      commit: 'deadbeef1234567',
+      releases: [],
+      id: 'long-line-test'
+    }
+
+    await expect(getReleaseLine(changeset)).rejects.toThrow(
+      'Line too long to safely parse'
+    )
+  })
 })
