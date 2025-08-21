@@ -9,11 +9,11 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
-      "!**/node_modules/**",
-      "!**/dist/**",
-      "!**/docs/**",
-      "!**/coverage/**",
-      "**/schemas/**"
+      "!**/node_modules",
+      "!**/dist",
+      "!**/docs",
+      "!**/coverage",
+      "**/schemas"
     ]
   },
   "formatter": {
