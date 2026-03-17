@@ -6,4 +6,4 @@
  */
 import { getDependencyReleaseLine, getReleaseLine } from '@/formatter'
 
-export { getReleaseLine, getDependencyReleaseLine }
+export { getDependencyReleaseLine, getReleaseLine }
