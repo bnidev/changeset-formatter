@@ -43,7 +43,7 @@
   },
   "packageManager": "pnpm@10.12.1",
   "peerDependencies": {
-    "@changesets/cli": "^2.29.5"
+    "@changesets/cli": "^2.30.0"
   },
   "dependencies": {
     "cosmiconfig": "^9.0.0"
@@ -55,6 +55,7 @@
     "@vitest/coverage-v8": "^4.1.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
+    "vite": "^8.0.0",
     "vitest": "^4.1.0"
   }
 }
