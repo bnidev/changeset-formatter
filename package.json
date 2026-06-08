@@ -46,7 +46,7 @@
     "@changesets/cli": "^2.30.0"
   },
   "dependencies": {
-    "cosmiconfig": "^9.0.0"
+    "cosmiconfig": "^9.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.13",
