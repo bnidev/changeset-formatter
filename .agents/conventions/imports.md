@@ -24,7 +24,7 @@ import { cleanup } from './cleanup'
 
 ## Rules
 
-- **Use the `@/*` alias for internal imports**, not relative `../`. It maps to `src/*` via `tsconfig.json` and `vitest.config.ts`.
+- **Use the `@/*` alias for internal imports**, not relative `../`. It maps to `./src/*` via `tsconfig.json` (paths field, with `moduleResolution: Bundler`).
 - **Use `import type`** for type-only imports. Biome will auto-fix this where it can.
 - **Use named imports where possible.** Default imports only when the module's contract is a single object (e.g., `import pkg from '../../package.json'`).
 - **No barrel files** unless shared across three or more modules. Each `import { foo } from '@/barrel'` hides the real source.

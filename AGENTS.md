@@ -6,10 +6,10 @@ Custom changelog formatter and CLI for [`@changesets/cli`](https://github.com/ch
 
 - TypeScript (strict, ES2022)
 - pnpm 10
-- Node.js 18+
+- Node.js 22+
 - Biome for lint and format
 - Vitest for tests
-- tsup for build
+- tsdown for build
 
 ## Import alias
 
@@ -23,7 +23,7 @@ pnpm run check            # biome lint + format check
 pnpm run check:fix        # biome auto-fix
 pnpm run test             # vitest run
 pnpm run test:coverage    # vitest run --coverage
-pnpm run build            # tsup build to dist/
+pnpm run build            # tsdown build to dist/
 ```
 
 CI order: `lint → test → build`.

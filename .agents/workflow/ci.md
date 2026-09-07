@@ -17,9 +17,9 @@ Defined in `.github/workflows/ci.yaml`. Three jobs, run in order: `lint → test
 - Runs `pnpm run test:coverage` (which sets `CI=true`)
 - Coverage report is uploaded as a workflow artifact
 
-### `build` — tsup
+### `build` — tsdown
 
-- Node 18 (minimum supported runtime)
+- Node 24.11+ (minimum supported runtime, matches `engines.node`)
 - Needs: `lint`, `test`
 - Runs `pnpm install --frozen-lockfile` then `pnpm run build`
 - Output goes to `dist/`
