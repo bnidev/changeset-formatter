@@ -43,7 +43,7 @@
   },
   "packageManager": "pnpm@10.12.1",
   "peerDependencies": {
-    "@changesets/cli": "^2.30.0"
+    "@changesets/cli": "^3.0.0"
   },
   "dependencies": {
     "cosmiconfig": "^9.0.0"
