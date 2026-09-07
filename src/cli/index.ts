@@ -30,12 +30,7 @@ Examples:
 `)
   process.exit(0)
 }
-/**
- * Immediately invoked async function to perform changelog cleanup.
- *
- * The leading semicolon (`;`) ensures this IIFE is treated as a separate statement,
- * avoiding potential issues with automatic semicolon insertion in JavaScript.
- */
+
 ;(async () => {
   const config = await loadFormatterConfig()
 
@@ -43,7 +38,17 @@ Examples:
     args.find((arg) => arg.endsWith('.md')) || config.pathToChangelog
   const absPath = path.resolve(process.cwd(), changelogPath)
 
-  const content = fs.readFileSync(absPath, 'utf-8')
+  let content: string
+  try {
+    content = fs.readFileSync(absPath, 'utf-8')
+  } catch (err) {
+    console.error(
+      `[changeset-formatter] Could not read "${changelogPath}": ${
+        err instanceof Error ? err.message : String(err)
+      }`
+    )
+    process.exit(1)
+  }
 
   const flags = {
     noDate: args.includes('--no-date'),
@@ -57,6 +62,17 @@ Examples:
   }
 
   const cleaned = cleanup(content, finalConfig)
-  fs.writeFileSync(absPath, cleaned)
+
+  try {
+    fs.writeFileSync(absPath, cleaned)
+  } catch (err) {
+    console.error(
+      `[changeset-formatter] Could not write "${changelogPath}": ${
+        err instanceof Error ? err.message : String(err)
+      }`
+    )
+    process.exit(1)
+  }
+
   console.log(`[changeset-formatter] Cleaned up ${changelogPath}`)
 })()
