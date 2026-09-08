@@ -53,6 +53,7 @@ CI order: `lint → test → build`.
 
 - [Git hooks](.agents/workflow/git-hooks.md)
 - [CI](.agents/workflow/ci.md)
+- [Releases](.agents/workflow/release.md)
 - [Commit conventions](.agents/workflow/commit-conventions.md)
 
 ## Domain
