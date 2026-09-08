@@ -72,6 +72,7 @@
     "@changesets/types": "^7.0.0",
     "@types/node": "^25.8.0",
     "@vitest/coverage-v8": "^4.1.0",
+    "esbuild": "^0.28.2",
     "tsdown": "^0.23.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2",
