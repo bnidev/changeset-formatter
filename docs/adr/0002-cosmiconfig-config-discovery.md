@@ -14,14 +14,17 @@ The formatter needs to load user configuration from the consumer's project. Opti
 
 ## Decision
 
-Use `cosmiconfig` with the module name `changesetFormatter`. This discovers:
+Use `cosmiconfig` with the module name `changesetformatter`. This discovers:
 
 - `.changesetformatterrc`
 - `.changesetformatterrc.json`
 - `.changesetformatterrc.yaml` / `.changesetformatterrc.yml`
-- `.changesetformatterrc.js` / `.cjs` / `.mjs`
-- `changesetformatter.config.js` / `.cjs` / `.mjs`
-- `package.json` under the `changesetFormatter` key
+- `.changesetformatterrc.js` / `.ts` / `.cjs` / `.mjs`
+- `.config/changesetformatterrc` (same suffix variants as above)
+- `changesetformatter.config.js` / `.ts` / `.cjs` / `.mjs`
+- `package.json` under the `changesetformatter` key
+
+The module name must be lowercase: cosmiconfig matches file names verbatim, so `changesetFormatter` would silently never discover any of the files above.
 
 A JSON schema for validation lives in `schemas/changeset-formatter.schema.json` but is not currently wired to cosmiconfig (a future ADR may add that).
 
