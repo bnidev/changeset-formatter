@@ -51,27 +51,30 @@ npm install -D @changesets/cli
 
 ### 1. Update Changesets Config
 
-Tell `@changesets/cli` to use this formatter by updating `.changeset/config.json`:
+Tell `@changesets/cli` to format its changelog with this formatter by updating `.changeset/config.json`:
 
 ```diff
 - "changelog": "@changesets/cli/changelog",
-+ "changelog": "changeset-formatter",
++ "changelog": "changeset-formatter/changelog",
 ```
 
-### 2. Add Post-Processing Script
+This is what wires the formatter into changesets. On every `changeset version` it writes each release entry with the configured per-line formatting (line prefix, commit hash, capitalization, type-stripping) and, when `categorize: true`, the emoji category headings.
 
-`@changesets/cli` doesn’t support customizing section headers directly. To handle that (e.g., adding category titles or dates), run the `changeset-formatter` CLI as a post-processing step.
+### 2. Add a Release Version Script (optional)
 
-Add the following to your `package.json` scripts:
+changesets wraps the formatter's output inside its own default `### Major Changes`, `### Minor Changes`, and `### Patch Changes` section headings. If you'd rather flatten those and clean up the latest version's sections, run the CLI as a post-processing step right after `changeset version`:
 
 ```json
 {
   "scripts": {
-    "version": "changeset version",
-    "postversion": "changeset-formatter"
+    "release:version": "changeset version && changeset-formatter"
   }
 }
 ```
+
+Then point your Changesets release setup at that script instead of `changeset version` alone. If you skip this, the changelog is still fully formatted by step 1 — it just keeps changesets' built-in semver section headings.
+
+> **Why not `version` / `postversion`?** npm runs `postversion` automatically, but pnpm disables pre/post lifecycle scripts by default (`enable-pre-post-scripts` is `false`), so that spelling silently skips the formatter for pnpm users. A single explicit script runs identically on npm, pnpm, and yarn.
 
 ### 3. Add a Formatter Config File
 
@@ -90,6 +93,10 @@ This file lets you control the appearance and structure of the changelog generat
   "removeTypes": true,
   "addReleaseDate": true,
   "categories": {
+    "breaking": {
+      "title": "Breaking Changes",
+      "emoji": "🚨"
+    },
     "feat": {
       "title": "Features",
       "emoji": "✨"
@@ -162,6 +169,7 @@ The categories object maps **commit types** (e.g., `feat`, `fix`) to:
 - You can add or modify categories to fit your project's needs.
 - You can define your own types, like `"style"`, `"build"`, `"refactor"`, etc.
 - A fallback category named `uncategorized` is used for unknown types if categorization is enabled.
+- A `breaking` category (for `!`-marked entries) is built into the defaults; you can still override its title or emoji.
 
 ## Writing Your Changeset Summaries
 
