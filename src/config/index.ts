@@ -83,6 +83,10 @@ const defaultConfig: Config = {
   removeTypes: true,
   addReleaseDate: true,
   categories: {
+    breaking: {
+      title: 'Breaking Changes',
+      emoji: '🚨'
+    },
     feat: {
       title: 'Features',
       emoji: '✨'
