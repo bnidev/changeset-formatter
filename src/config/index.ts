@@ -3,26 +3,30 @@ import { cosmiconfig } from 'cosmiconfig'
 /**
  * cosmiconfig is a library that loads configuration from various formats and locations.
  *
- * When initialized with 'changesetFormatter', it looks for configuration files named:
+ * When initialized with 'changesetformatter', it looks for configuration files named:
  * - `.changesetformatterrc`
  * - `.changesetformatterrc.json`
  * - `.changesetformatterrc.yaml` / `.changesetformatterrc.yml`
- * - `.changesetformatterrc.js` / `.cjs` / `.mjs`
- * - `changesetformatter.config.js` / `.cjs` / `.mjs`
+ * - `.changesetformatterrc.js` / `.ts` / `.cjs` / `.mjs`
+ * - `.config/changesetformatterrc` (same suffix variants as above)
+ * - `changesetformatter.config.js` / `.ts` / `.cjs` / `.mjs`
  *
- * It also looks inside `package.json` under the `changesetFormatter` key.
+ * It also looks inside `package.json` under the `changesetformatter` key.
+ *
+ * @remarks The module name is lowercase because cosmiconfig matches file names verbatim.
  */
-const explorer = cosmiconfig('changesetFormatter')
+const explorer = cosmiconfig('changesetformatter')
 
 /**
  * Loads the formatter configuration from the user's project.
  * It searches for a configuration file using cosmiconfig and merges it with the default configuration.
  *
+ * @param searchFrom - Directory to start the config discovery from. Defaults to the current working directory.
  * @returns A promise that resolves to the merged configuration object.
  */
-export async function loadFormatterConfig() {
+export async function loadFormatterConfig(searchFrom?: string) {
   try {
-    const result = await explorer.search()
+    const result = await explorer.search(searchFrom)
     if (result?.config && typeof result.config === 'object') {
       return mergeConfig(result.config, defaultConfig)
     } else {
