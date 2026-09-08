@@ -2,5 +2,11 @@
   "showCommitHash": true,
   "categorize": true,
   "capitalizeMessage": true,
-  "useEmojis": true
+  "useEmojis": true,
+  "categories": {
+    "security": {
+      "title": "Security",
+      "emoji": "🛡️"
+    }
+  }
 }
