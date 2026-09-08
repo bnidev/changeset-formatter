@@ -1,6 +1,6 @@
 {
   "name": "changeset-formatter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Custom formatter and CLI for Changesets",
   "type": "module",
   "bin": {
