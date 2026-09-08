@@ -33,9 +33,7 @@
     "test:coverage": "vitest run --coverage",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "preversion": "npm run build",
-    "version": "changeset version",
-    "postversion": "node dist/cli/index.cjs"
+    "release:version": "changeset version && node dist/cli/index.cjs"
   },
   "files": [
     "dist",

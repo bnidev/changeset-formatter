@@ -38,6 +38,6 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version && node dist/cli/index.cjs
+          version: pnpm run release:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
