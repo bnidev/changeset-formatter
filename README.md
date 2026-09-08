@@ -171,16 +171,24 @@ To enable categorization each line in a changeset summary should follow the [Con
 type: message
 ```
 
+Mark an entry as a breaking change with a `!` before the colon. The type is irrelevant — `feat!`, `fix!`, `chore!`, etc. all land in the `breaking` category:
+
+```md
+type!: message
+```
+
 For example:
 
-```
+```md
 feat: add user authentication flow
 fix: correct button alignment
 docs: update API reference
+fix!: drop support for Node 18
 ```
 
 - Each non-empty line is parsed independently and categorized based on its type.
 - Type maps to a key in the categories config (e.g., `feat`, `fix`, `docs`).
+- A `!` before the colon marks the entry as a breaking change (`feat!`, `fix!`, `chore!`, ...) and routes it to the `breaking` category regardless of type.
 - Unknown or missing types will fall under the uncategorized section (if `categorize` is enabled).
 - You can define custom types like `style`, `build` or `perf` in your `.changesetformatterrc.json`.
 

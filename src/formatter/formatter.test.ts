@@ -12,6 +12,7 @@ const mockConfig: import('@/config').Config = {
   categorize: false,
   useEmojis: false,
   categories: {
+    breaking: { emoji: '🚨', title: 'Breaking Changes' },
     feat: { emoji: '✨', title: 'Features' },
     fix: { emoji: '🐛', title: 'Bug Fixes' },
     uncategorized: { emoji: '🔖', title: 'Other Changes' }
@@ -93,6 +94,58 @@ describe('formatter/index', () => {
     expect(result).toContain('### Features')
     expect(result).toContain('### Bug Fixes')
     expect(result).toContain('### Other Changes')
+  })
+
+  it('categorizes breaking changes marked with a `!`', async () => {
+    vi.spyOn(configModule, 'loadFormatterConfig').mockResolvedValue({
+      ...mockConfig,
+      categorize: true,
+      capitalizeMessage: true
+    })
+    const changeset: NewChangesetWithCommit = {
+      summary: 'fix!: drop legacy support\nfeat(api)!: rework endpoints',
+      commit: 'abcdef1234567890',
+      releases: [],
+      id: 'test-changeset'
+    }
+
+    const result = await getReleaseLine(changeset)
+    expect(result).toContain('### Breaking Changes')
+    expect(result).toContain('Drop legacy support')
+    expect(result).toContain('Rework endpoints')
+    expect(result).not.toContain('Bug Fixes')
+    expect(result).not.toContain('Features')
+  })
+
+  it('keeps the type and `!` when removeTypes is false', async () => {
+    const changeset: NewChangesetWithCommit = {
+      summary: 'fix!: drop legacy support',
+      commit: 'abcdef1234567890',
+      releases: [],
+      id: 'test-changeset'
+    }
+
+    const result = await getReleaseLine(changeset)
+    expect(result).toContain('fix!')
+  })
+
+  it('does not treat a trailing `!` inside the message as breaking', async () => {
+    vi.spyOn(configModule, 'loadFormatterConfig').mockResolvedValue({
+      ...mockConfig,
+      categorize: true,
+      capitalizeMessage: true
+    })
+    const changeset: NewChangesetWithCommit = {
+      summary: 'fix: add !important hint',
+      commit: 'abcdef1234567890',
+      releases: [],
+      id: 'test-changeset'
+    }
+
+    const result = await getReleaseLine(changeset)
+    expect(result).toContain('### Bug Fixes')
+    expect(result).toContain('Add !important hint')
+    expect(result).not.toContain('Breaking Changes')
   })
 
   it('throws an error if a summary line exceeds 1000 characters', async () => {

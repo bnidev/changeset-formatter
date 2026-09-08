@@ -80,11 +80,11 @@ function categorizeSummary(
           throw new Error('Line too long to safely parse')
         }
 
-        const match = line.match(/^(\w+)(?:\([^)]+\))?:\s*(.+)$/)
+        const match = line.match(/^(\w+)(?:\([^)]+\))?(!)?:\s*(.+)$/)
         let message: string
 
         if (match) {
-          const [, type, rawMsg] = match
+          const [, type, breaking, rawMsg] = match
 
           const formattedMsg = config.capitalizeMessage
             ? capitalize(rawMsg)
@@ -93,7 +93,7 @@ function categorizeSummary(
           if (config.removeTypes) {
             message = formattedMsg
           } else {
-            message = `${type}: ${formattedMsg}`
+            message = `${type}${breaking ?? ''}: ${formattedMsg}`
           }
         } else {
           message = config.capitalizeMessage ? capitalize(line) : line
@@ -112,10 +112,13 @@ function categorizeSummary(
       throw new Error('Line too long to safely parse')
     }
 
-    const match = line.match(/^(\w+)(?:\([^)]+\))?:\s*(.+)$/)
-    const { type, message } = match
-      ? { type: match[1].toLowerCase(), message: match[2] }
-      : { type: 'uncategorized', message: line }
+    const match = line.match(/^(\w+)(?:\([^)]+\))?(!)?:\s*(.+)$/)
+    const type = match
+      ? match[2]
+        ? 'breaking'
+        : match[1].toLowerCase()
+      : 'uncategorized'
+    const message = match ? match[3] : line
 
     const cat = config.categories[type] ?? config.categories.uncategorized
     const categoryTitle = config.useEmojis
