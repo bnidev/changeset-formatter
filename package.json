@@ -65,7 +65,7 @@
     "@changesets/cli": "^3.0.0"
   },
   "dependencies": {
-    "cosmiconfig": "^9.0.2"
+    "cosmiconfig": "^10.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.3",

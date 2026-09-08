@@ -20,5 +20,5 @@ First stable release with an explicit API stability commitment.
 
 - Upgrade TypeScript to 7
 - Upgrade Biome to 2.5.x
-- Upgrade cosmiconfig to 9.0.2
+- Upgrade cosmiconfig to 10.0.1 (fixes js-yaml security vulnerabilities)
 - Align CI build job with .nvmrc (Node 24)
