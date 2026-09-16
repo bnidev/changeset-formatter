@@ -6,11 +6,12 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(import.meta.dirname, './src')
     }
   },
   test: {
     globals: true,
+    restoreMocks: true,
     include: ['src/**/*.test.ts'],
     coverage: {
       all: true,

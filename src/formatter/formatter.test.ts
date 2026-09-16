@@ -1,5 +1,5 @@
 import type { NewChangesetWithCommit } from '@changesets/types'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import * as configModule from '@/config'
 import { getDependencyReleaseLine, getReleaseLine } from './index'
 
@@ -24,6 +24,10 @@ const mockConfig: import('@/config').Config = {
 describe('formatter/index', () => {
   beforeEach(() => {
     vi.spyOn(configModule, 'loadFormatterConfig').mockResolvedValue(mockConfig)
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
   })
 
   it('formats a simple changeset summary', async () => {
