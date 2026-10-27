@@ -24,7 +24,9 @@ const explorer = cosmiconfig('changesetformatter')
  * @param searchFrom - Directory to start the config discovery from. Defaults to the current working directory.
  * @returns A promise that resolves to the merged configuration object.
  */
-export async function loadFormatterConfig(searchFrom?: string) {
+export async function loadFormatterConfig(
+  searchFrom?: string
+): Promise<Config> {
   try {
     const result = await explorer.search(searchFrom)
     if (result?.config && typeof result.config === 'object') {
