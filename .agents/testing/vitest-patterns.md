@@ -26,7 +26,9 @@ describe('formatter/index', () => {
 
   it('formats a simple changeset summary', async () => {
     // arrange
-    const changeset: NewChangesetWithCommit = { /* ... */ }
+    const changeset: NewChangesetWithCommit = {
+      /* ... */
+    }
 
     // act
     const result = await getReleaseLine(changeset)
@@ -42,7 +44,9 @@ describe('formatter/index', () => {
 The config loader (`loadFormatterConfig`) reads from disk via cosmiconfig. Tests **must mock it** to avoid filesystem dependency. Use `vi.spyOn` in `beforeEach` and override per-test as needed:
 
 ```ts
-const mockConfig: Config = { /* minimal valid config */ }
+const mockConfig: Config = {
+  /* minimal valid config */
+}
 
 beforeEach(() => {
   vi.spyOn(configModule, 'loadFormatterConfig').mockResolvedValue(mockConfig)

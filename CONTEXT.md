@@ -45,7 +45,6 @@ The CLI's markdown post-processing pass. After `@changesets/cli` writes the `CHA
 ### Two-Phase Workflow
 
 This tool operates in two phases as a paired workflow:
-
 1. **Phase 1 (programmatic hook)**: `@changesets/cli` calls `getReleaseLine` for each changeset during `version`. Produces the raw changelog content.
 2. **Phase 2 (CLI post-processing)**: `changeset-formatter` CLI reads the generated `CHANGELOG.md`, applies formatting (categorization, date-stamping, semver cleanup), and writes it back.
 

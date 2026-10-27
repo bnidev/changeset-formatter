@@ -17,7 +17,6 @@ Each PR that ships a user-facing change carries a changeset file under `.changes
 ## 2. Run "Create Release PR"
 
 Trigger `release-create.yml`, which runs `release:version` (`changeset version && node dist/cli/index.cjs`):
-
 - `changeset version` bumps `package.json` to the next version, writes `CHANGELOG.md` via the formatter hook, and deletes the consumed changesets
 - `node dist/cli/index.cjs` post-processes the changelog (category grouping, semver-heading and date handling)
 - `changesets/action` pushes a `changeset-release/main` branch and opens (or updates) the **Version Packages** PR
@@ -39,7 +38,6 @@ Review the generated changelog and version bump, then merge. The release branch 
 ## 4. Run "Publish to npm"
 
 Trigger `release-publish.yml`, which publishes via **npm Trusted Publishing** (OIDC — no `NPM_TOKEN` needed):
-
 - `pnpm changeset publish` publishes the package
 - The action intends to create a `v1.0.0`-style git tag and GitHub release automatically
 
@@ -55,7 +53,7 @@ gh release create v1.0.0 --target main --title "v1.0.0" --notes "<changelog entr
 
 A changeset is a Markdown file under `.changeset/` with frontmatter and a body:
 
-```md
+```text
 ---
 "changeset-formatter": patch
 ---

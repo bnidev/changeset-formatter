@@ -27,7 +27,6 @@ This is intentionally lighter than CI (which also runs tests and build). Hooks s
 ## Why not pre-commit?
 
 The repo chose `pre-push` over `pre-commit` because:
-
 - Commits stay fast and local
 - CI still catches everything before merge
 - No need for lint-staged, husky, or other tooling

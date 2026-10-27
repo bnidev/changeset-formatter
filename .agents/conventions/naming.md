@@ -21,9 +21,13 @@
 ## Examples
 
 ```ts
-const defaultConfig: Config = { /* ... */ }
+const defaultConfig: Config = {
+  /* ... */
+}
 
-export function loadFormatterConfig(): Promise<Config> { /* ... */ }
+export function loadFormatterConfig(): Promise<Config> {
+  /* ... */
+}
 
 function isEmptyLine(line: string): boolean {
   return line.trim() === ''
