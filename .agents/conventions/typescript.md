@@ -3,7 +3,6 @@
 ## Compiler settings
 
 Defined in `tsconfig.json`. Do not change without an ADR.
-
 - `strict: true` — no `any`, no implicit `any`
 - `target: ES2022`, `module: ESNext`, `moduleResolution: Bundler`
 - `esModuleInterop: true`, `resolveJsonModule: true`
