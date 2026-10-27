@@ -4,9 +4,9 @@
 
 Defined in `tsconfig.json`. Do not change without an ADR.
 - `strict: true` — no `any`, no implicit `any`
-- `target: ES2022`, `module: ESNext`, `moduleResolution: Node`
+- `target: ES2022`, `module: ESNext`, `moduleResolution: Bundler`
 - `esModuleInterop: true`, `resolveJsonModule: true`
-- `ignoreDeprecations: "6.0"` — required for TypeScript 6.0 compatibility
+- `isolatedDeclarations: true` — required by tsdown's Oxc declaration emitter; every export needs an explicit type (see [ADR-0004](../../docs/adr/0004-isolated-declarations.md))
 
 ## Rules
 
