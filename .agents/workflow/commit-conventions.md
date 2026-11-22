@@ -35,6 +35,7 @@ All types from the spec are allowed. Pick the one that best describes the change
 ## Scope
 
 **Free-form.** Use whatever conveys the area of the codebase affected. Common scopes in this repo:
+
 - `deps` — runtime dependency changes
 - `deps-dev` — dev dependency changes
 - `formatter` — `src/formatter/`
