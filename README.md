@@ -6,8 +6,6 @@ A customizable changelog formatter for [changesets](https://github.com/changeset
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/bnidev/changeset-formatter/actions/workflows/ci.yaml/badge.svg)](https://github.com/bnidev/changeset-formatter/actions/workflows/ci.yaml)
 
-
-
 ## Features
 
 - Categorizes changesets based on their type (e.g., `feat`, `fix`, `docs`) using [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) style
@@ -148,6 +146,7 @@ This file lets you control the appearance and structure of the changelog generat
 ### Categories Structure
 
 The categories object maps **commit types** (e.g., `feat`, `fix`) to:
+
 - A title (category heading)
 - An optional emoji to display next to the title (if `useEmojis` is `true`)
 
